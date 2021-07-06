@@ -1,3 +1,6 @@
+{#외부가 아닌 내부에서 static을 불러올떄는 아래와같은 구문을 이용한다#}
+{% load static %}
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,5 +12,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+    {# STATIC FILES LINK #}
+    {#    link누르고 tab 누르면 자동완성된다#}
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
 
 </head>

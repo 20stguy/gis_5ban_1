@@ -1,8 +1,23 @@
 {% extends 'base.html' %}
 {# base.html을 확장하겠다#}
-
 {%  block content %}
+
+    <style>
+    .testing {
+        background-color: yellow;
+        height: 48px;
+        width: 48px;
+        border-radius: .5rem;
+    }
+    </style>
+
 <div style="height: 20rem; background-color: aqua; border-radius: 1rem; margin: 2rem">
 TEST
+    <div class = "testing", style="display:block">block</div>
+    <div class = "testing", style="display:inline">block</div>
+    <div class = "testing", style="display:inline-block">block</div>
+    <div class = "testing", style="display:none">block</div>
+    <div class = "testing",>default</div>
 </div>
+
 {%  endblock %}
