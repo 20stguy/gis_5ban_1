@@ -2,21 +2,27 @@
 {# base.html을 확장하겠다#}
 {%  block content %}
 
-    <style>
-    .testing {
-        background-color: yellow;
-        height: 48px;
-        width: 48px;
-        margin: 1rem;
-        {#기본 px을 16px이다 rem 1, 48px=3rem#}
-        border-radius: .5rem;
-    }
-    </style>
 
-    <div style="height: 2rem; text-align: center">
-        <h1>METHOD</h1>
+<div style="text-align: center">
+    <h1 style="font_family": 'Pacifico', cursive" class="m-5">
+    hello_world_list
+    </h1>
 
-        <h3>{{ TEXT }}</h3>
-    </div>
+    <form action="/accounts/hello_world/" method="post">
+        {% csrf_token %}
+        <div class="input-group mb-3 w-50 m-auto">
+            <input type="text" class="form-control"
+                name="hello_world_input">
+            <button class ="btn btn-dark" type="submit">
+                Button
+            </button>
+        </div>
 
-{%  endblock %}
+    {% if hello_world_list %}
+        {% for hello_world in hello_world_list %}
+            <h3>{{ hello_world.text }}</h3>
+        {% endfor %}
+    {% endif %}
+</div>
+
+{%  endblock %}/
