@@ -30,6 +30,6 @@ def hello_world(request):
 
 class AccountCreateView(CreateView):
     model = User
-    form_calss = UserCreationForm
-    success_url = reverse_lazy('accountapp:hello_world')
-    template_name = 'accountapp.create.html'
+    form_class = UserCreationForm
+    success_url = reverse_lazy('accountapp:hello_world') #로그인시 연결되는 프로그램은 accountapp:hello_world)
+    template_name = 'accountapp/create.html'
