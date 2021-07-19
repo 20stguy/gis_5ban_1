@@ -36,7 +36,7 @@ class AccountCreateView(CreateView):
 
 class AccountDetailView(DetailView):
     model = User
-    context_object_name = 'target_user' # 타겟 유저를 통해 html 볼 수 입사
+    context_object_name = 'target_user' # 타겟 유저를 통해 html 볼 수 있다
     template_name = 'accountapp/detail.html'
 
 class AccountUpdateView(UpdateView):
