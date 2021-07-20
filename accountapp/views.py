@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.shortcuts import render
 
 # Create your views here.
@@ -49,19 +49,20 @@ class AccountUpdateView(UpdateView):
     success_url = reverse_lazy = ('acountapp:hello_world')
     template_name = 'accountapp/update.html'
 
-    def get(selfself, request, *args, **kwargs):
-        if request.user.is_authenticated:
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated and self.get_object() == request.user:
             return super().get(request, *args, **kwargs)
 #     def와 return 두줄은 부모 calss와 같은것으로 지우나 쓰나 구동에 바뀌는게 없다
         else:
-            return HttpResponseRedirect(reverse('accountapp:login'))
+            return HttpResponseForbidden()
 
-    def post(selfself, request, *args, **kwargs):
-            if request.user.is_authenticated:
+    def post(self, request, *args, **kwargs):
+            if request.user.is_authenticated and self.get_object() == request.user:
                 return super().get(request, *args, **kwargs)
                 #     def와 return 두줄은 부모 calss와 같은것으로 지우나 쓰나 구동에 바뀌는게 없다
             else:
-                return HttpResponseRedirect(reverse('accountapp:login'))
+                return HttpResponseForbidden()
+
 
 class AccountDeleteView(DeleteView):
     model = User
@@ -69,19 +70,19 @@ class AccountDeleteView(DeleteView):
     success_url = reverse_lazy = ('accountapp:hello_world')
     template_name = 'accountapp/delete.html'
 
-    def get(selfself, request, *args, **kwargs):
-        if request.user.is_authenticated:
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated and self.get_object() == request.user:
             return super().get(request, *args, **kwargs)
             #     def와 return 두줄은 부모 calss와 같은것으로 지우나 쓰나 구동에 바뀌는게 없다
         else:
-            return HttpResponseRedirect(reverse('accountapp:login'))
+            return HttpResponseForbidden()
 
-    def post(selfself, request, *args, **kwargs):
-        if request.user.is_authenticated:
+    def post(self, request, *args, **kwargs):
+        if request.user.is_authenticated and self.get_object() == request.user:
             return super().get(request, *args, **kwargs)
             #     def와 return 두줄은 부모 calss와 같은것으로 지우나 쓰나 구동에 바뀌는게 없다
         else:
-            return HttpResponseRedirect(reverse('accountapp:login'))
+            return HttpResponseForbidden()
 
 
 
