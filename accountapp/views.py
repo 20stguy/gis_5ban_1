@@ -4,27 +4,30 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
 from accountapp.models import HelloWorld
 
 
 def hello_world(request):
-    if request.method == "POST":
+    if request.user.is_authenticated:
+        if request.method == "POST":
 
-        temp = request.POST.get('hello_world_input')
-        # temp에서 받은걸 new_hello_world에 넣어준다
-        new_hello_world = HelloWorld()
-        # model에 넣어준다
-        new_hello_world.text = temp
-        new_hello_world.save()
+            temp = request.POST.get('hello_world_input')
+            # temp에서 받은걸 new_hello_world에 넣어준다
+            new_hello_world = HelloWorld()
+            # model에 넣어준다
+            new_hello_world.text = temp
+            new_hello_world.save()
 
-        return HttpResponseRedirect(reversed('accountapp:hello_world'))
+            return HttpResponseRedirect(reverse('accountapp:hello_world'))
+        else:
+            hello_world_list = HelloWorld.objects.all()
+            return render(request, 'accountapp/hello_world.html',
+                          context={'hello_world_list': hello_world_list})
     else:
-        hello_world_list = HelloWorld.objects.all()
-        return render(request, 'accountapp/hello_world.html',
-                      context={'hello_world_list': hello_world_list})
+        return HttpResponseRedirect(reverse('accountapp:login'))
 
 
 
@@ -46,10 +49,39 @@ class AccountUpdateView(UpdateView):
     success_url = reverse_lazy = ('acountapp:hello_world')
     template_name = 'accountapp/update.html'
 
+    def get(selfself, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return super().get(request, *args, **kwargs)
+#     def와 return 두줄은 부모 calss와 같은것으로 지우나 쓰나 구동에 바뀌는게 없다
+        else:
+            return HttpResponseRedirect(reverse('accountapp:login'))
+
+    def post(selfself, request, *args, **kwargs):
+            if request.user.is_authenticated:
+                return super().get(request, *args, **kwargs)
+                #     def와 return 두줄은 부모 calss와 같은것으로 지우나 쓰나 구동에 바뀌는게 없다
+            else:
+                return HttpResponseRedirect(reverse('accountapp:login'))
+
 class AccountDeleteView(DeleteView):
     model = User
     context_object_name = 'target_user'
     success_url = reverse_lazy = ('accountapp:hello_world')
     template_name = 'accountapp/delete.html'
+
+    def get(selfself, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return super().get(request, *args, **kwargs)
+            #     def와 return 두줄은 부모 calss와 같은것으로 지우나 쓰나 구동에 바뀌는게 없다
+        else:
+            return HttpResponseRedirect(reverse('accountapp:login'))
+
+    def post(selfself, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return super().get(request, *args, **kwargs)
+            #     def와 return 두줄은 부모 calss와 같은것으로 지우나 쓰나 구동에 바뀌는게 없다
+        else:
+            return HttpResponseRedirect(reverse('accountapp:login'))
+
 
 
