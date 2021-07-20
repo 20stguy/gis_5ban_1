@@ -52,3 +52,4 @@ class AccountDeleteView(DeleteView):
     success_url = reverse_lazy = ('accountapp:hello_world')
     template_name = 'accountapp/delete.html'
 
+
