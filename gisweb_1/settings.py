@@ -145,13 +145,21 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
+# 주소창에 경로가 들어왔을때 static이 보이게 한다.
 STATIC_URL = '/static/'
+# 최상위 BASE_DIR폴더안의 staticfiles파일이 STATIC_ROOT(가장 밑에 파일)이 될것이다.
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
     #'/var/www/static/', #이부분은 필요가 없어서 지워도 된다
 ]
+
+# profile앱을 만들기 위해 설정하기
+MEDIA_URL = '/media/'
+# 최상위 BASE_DIR폴더안의 staticfiles파일이 STATIC_ROOT(가장 밑에 파일)이 될것이다.
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
