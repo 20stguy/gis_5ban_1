@@ -7,3 +7,4 @@ class ProfileCreationForm(ModelForm):
     class Meta:
         model = Profile
         fileds = ['image', 'nickname', 'message']
+test
