@@ -29,7 +29,8 @@ def hello_world(request):
         return render(request, 'accountapp/hello_world.html',
                       context={'hello_world_list': hello_world_list})
 
-
+@method_decorator(login_required, 'get')
+@method_decorator(login_required, 'post')
 class AccountCreateView(CreateView):
     model = User
     form_class = UserCreationForm
@@ -55,8 +56,10 @@ class AccountUpdateView(UpdateView):
     model = User
     form_class = AccountCreationForm
     context_object_name = 'target_user'
-    success_url = reverse_lazy = ('acountapp:hello_world')
     template_name = 'accountapp/update.html'
+
+    def get_success_url(self):
+        return reverse('accountapp:detail', kwargs={'pk': self.object.pk}) # self.object = target_user를 받는다.
     # decorator로 대체(장고에서 기본적으로 제공하는 decorator 있다)
 #     def get(self, request, *args, **kwargs):
 #         if request.user.is_authenticated and self.get_object() == request.user:
