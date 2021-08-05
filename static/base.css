@@ -42,3 +42,17 @@
 .round_button:hover{
     color: dimgrey;
 }
+
+
+.article_image {
+    border_radius: 2rem;
+    width: 70%;
+    box-shadow: 0 0 .5rem grey;
+}
+
+
+.article_content{
+    font-size: 1.1rem;
+    text-aligh: left;
+    margin: 2rem;
+}
