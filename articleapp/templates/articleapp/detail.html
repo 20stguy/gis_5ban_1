@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container text-center">
+        <div class="my-5">
+            {#     제목, 글쓴이, 작성일       #}
+            <h1 class="NNS_B">{{ target_article.title }}</h1>
+           <h3>{{ target_article.writer.profile.nickname }}</h3>
+            <p>{{ target_article.created.at }}</p>
+        </div>
+
+        <hr>
+
+        <div class="m-5">
+            {#    게시글, 대표이미지, 글내용        #}
+            <img src="{{ target_article.image.url }}"
+                 class="article_image"
+                 alt="">
+            <div class = "article_content">
+                {{ target_articel.content }}
+            </div>
+            <div>
+                <a href="{% url 'articleapp:update' pk=target_article.pk %}"
+                   class="btn btn-success rounded-pill px-5">
+                    Delete
+                </a>
+            </div>
+        </div>
+
+        <hr>
+        <div class="text-center my-4">
+            {% include 'commnetapp/create.html' %}
+
+        </div>
+    </div>
+
+
+
+{% endblock %}
