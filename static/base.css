@@ -56,3 +56,13 @@
     text-aligh: left;
     margin: 2rem;
 }
+
+
+.comment_box{
+    text_align: left;
+    border: solid;
+    border-coler: #bebebe;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 1rem;
+}

@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
@@ -11,7 +11,8 @@ from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
 from accountapp.decorators import account_ownership_required
 from accountapp.models import HelloWorld
-from accountapp.templates.accountapp.forms import AccountCreationForm
+from accountapp.forms import AccountCreationForm
+from commentapp.models import Comment
 
 
 @login_required
@@ -60,6 +61,19 @@ class AccountUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse('accountapp:detail', kwargs={'pk': self.object.pk}) # self.object = target_user를 받는다.
+
+
+    class CommentDeleteView(DeleteView):
+        model = Comment
+        context_object_name = 'target_commnet'
+        template_name = 'commentapp/delete.html'
+
+        def get_success_url(self):
+            return reverse('articleapp:detail', kwargs={'pk': self.object.article.pk})
+
+
+
+
     # decorator로 대체(장고에서 기본적으로 제공하는 decorator 있다)
 #     def get(self, request, *args, **kwargs):
 #         if request.user.is_authenticated and self.get_object() == request.user:
