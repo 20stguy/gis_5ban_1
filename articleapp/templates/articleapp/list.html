@@ -4,8 +4,16 @@
 {% block content %}
 
     <style>
+        .container {
+            padding: 0;
+            margin: 0 auto;
+        }
+
         .container div {
-          width: 280px;
+          {#  width 반응형으로 핸드폰 크기에 맞춰 보이게 하기#}
+          width: 45%;
+            {# 컴퓨터에서 커지는 크기 최대값으로 제한하기#}
+            max-width:200px;
             box-shadow: 0 0 .5rem grey;
           background-color: antiquewhite;
           display: flex;

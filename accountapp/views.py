@@ -12,7 +12,7 @@ from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 from accountapp.decorators import account_ownership_required
 from accountapp.models import HelloWorld
 from accountapp.forms import AccountCreationForm
-from commentapp.models import Comment
+
 
 
 @login_required
@@ -30,13 +30,13 @@ def hello_world(request):
         return render(request, 'accountapp/hello_world.html',
                       context={'hello_world_list': hello_world_list})
 
-@method_decorator(login_required, 'get')
-@method_decorator(login_required, 'post')
+
 class AccountCreateView(CreateView):
     model = User
     form_class = UserCreationForm
     success_url = reverse_lazy('accountapp:hello_world') #로그인시 연결되는 프로그램은 accountapp:hello_world)
     template_name = 'accountapp/create.html'
+
 
 class AccountDetailView(DetailView):
     model = User
@@ -45,14 +45,15 @@ class AccountDetailView(DetailView):
 
 has_ownership = [login_required, account_ownership_required]
 
-@method_decorator(has_ownership, 'get')
-@method_decorator(has_ownership, 'post')
+
 # has_ownership으로 대체한다
 # @method_decorator(login_required, 'get')
 # @method_decorator(login_required, 'post')
 # # 계정관련 decorators.py에 decorator 만들고 불러오기.
 # @method_decorator(account_ownership_required, 'get')
 # @method_decorator(account_ownership_required, 'post')
+@method_decorator(has_ownership, 'get')
+@method_decorator(has_ownership, 'post')
 class AccountUpdateView(UpdateView):
     model = User
     form_class = AccountCreationForm
@@ -63,15 +64,16 @@ class AccountUpdateView(UpdateView):
         return reverse('accountapp:detail', kwargs={'pk': self.object.pk}) # self.object = target_user를 받는다.
 
 
-    class CommentDeleteView(DeleteView):
-        model = Comment
-        context_object_name = 'target_commnet'
-        template_name = 'commentapp/delete.html'
+@method_decorator(has_ownership, 'get')
+@method_decorator(has_ownership, 'post')
+class AccountUpdateView(UpdateView):
+    model = User
+    form_class = AccountCreationForm
+    context_object_name = 'target_user'
+    template_name = 'accountapp/update.html'
 
-        def get_success_url(self):
-            return reverse('articleapp:detail', kwargs={'pk': self.object.article.pk})
-
-
+    def get_success_url(self):
+        return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
 
 
     # decorator로 대체(장고에서 기본적으로 제공하는 decorator 있다)
