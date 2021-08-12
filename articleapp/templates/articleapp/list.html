@@ -31,6 +31,7 @@
     </style>
 
     <div class="container my-4">
+
         {% for article in article_list %}'
 
             <div>
@@ -44,13 +45,7 @@
 
         {% endfor %}
 
-
-
     </div>
-
-
-
-
 
 {#이제 로렘픽섬에서 이미지 불러오지 않고 우리가 이미지 넣기#}
 {#    <div class="container my-4">#}
@@ -101,7 +96,7 @@
     {% include 'snippets/pagination.html' %}
 
     <div class="text-center my-5">
-        <a href="{% url 'articleapp:creat' %}"
+        <a href="{% url 'articleapp:create' %}"
         class="btn btn-dark rounded-pill material-icons">
             brush
         </a>
@@ -110,7 +105,6 @@
             Create Article
         </a>
     </div>
-
 
 
 {% endblock %}
