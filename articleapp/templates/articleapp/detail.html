@@ -55,8 +55,15 @@
                                 {{ commnet.content }}
                             </p>
                         </div>
+                        {% if commnet.writer == user %}
+                        <div style="text-align: right">
+                            <a href="{% url 'commnetapp:delete' pk=comment.pk %}"
+                            class="btn btn-danger round-pill px-5">
+                                Delete
+                            </a>
+                        </div>
+                        {% endif %}
                     </div>
-
                 {% endfor %}
 
             {% include 'commnetapp/create.html' %}
