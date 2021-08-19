@@ -2,12 +2,19 @@ from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
+from Projectapp.models import Project
+
 
 class Article(models.Model):
     writer = models.ForeignKey(User,
                                on_delete=models.SET_NULL,
                                related_name='article',
                                null = True)
+    # project앱과 연결하기
+    project = models.ForeignKey(Project,
+                                on_delete=models.SET_NULL,
+                                related_name='article',
+                                null=True)
     # ForeignKey : 다른 데이터 베이스와 연결해주는 1:다로 연결해주는 필드
     title = models.CharField(max_length=200, null=True)
     # CharField() : 짧은 내용을 넣을때

@@ -5,9 +5,12 @@ from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, ListView
+from django.views.generic.list import MultipleObjectMixin
 
 from Projectapp.forms import ProjectCreationForm
 from Projectapp.models import Project
+from articleapp.models import Article
+
 
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
@@ -21,10 +24,17 @@ class ProjectCreateView(CreateView):
         return reverse('projectapp:detail', kwargs={'pk':self.object.pk})
 
 
-class ProjectDetailView(DetailView):
+class ProjectDetailView(DetailView, MultipleObjectMixin):
     model = Project
     context_object_name = 'target_project'
     template_name = 'projectapp/detail.html'
+
+    paginate_by = 20
+
+    def get_context_data(self, **kwargs):
+        article_list = Article.objects.filter(project=self.object)
+        return super().get_context_data(object_list=article_list, **kwargs)
+
 
 class ProjectListView(ListView):
     model = Project
