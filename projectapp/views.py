@@ -7,8 +7,8 @@ from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, ListView
 from django.views.generic.list import MultipleObjectMixin
 
-from Projectapp.forms import ProjectCreationForm
-from Projectapp.models import Project
+from projectapp.forms import ProjectCreationForm
+from projectapp.models import Project
 from articleapp.models import Article
 
 

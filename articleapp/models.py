@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
-from Projectapp.models import Project
+from projectapp.models import Project
 
 
 class Article(models.Model):
