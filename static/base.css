@@ -73,3 +73,17 @@
         font-size:13px
     }
 }
+
+
+a {
+    /*꾸며주는 모든걸 없애주기*/
+    text-decoration: none;
+    /* 하트 색상을 검정으로 바꾸기 */
+    color: black;
+}
+
+/*마우스 커서 올리면 변경되는 anker태그 바꾸기*/
+a:hover {
+    /*  마우스에 커서 올리면 하트색깔 바뀌는거 없애기  */
+    color: black;
+}
