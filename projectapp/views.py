@@ -10,6 +10,7 @@ from django.views.generic.list import MultipleObjectMixin
 from projectapp.forms import ProjectCreationForm
 from projectapp.models import Project
 from articleapp.models import Article
+from subscribeapp.models import Subscription
 
 
 @method_decorator(login_required, 'get')
@@ -21,7 +22,7 @@ class ProjectCreateView(CreateView):
     template_name = 'projectapp/create.html'
 
     def get_success_url(self):
-        return reverse('projectapp:detail', kwargs={'pk':self.object.pk})
+        return reverse('projectapp:detail', kwargs={'pk': self.object.pk})
 
 
 class ProjectDetailView(DetailView, MultipleObjectMixin):
@@ -32,8 +33,29 @@ class ProjectDetailView(DetailView, MultipleObjectMixin):
     paginate_by = 20
 
     def get_context_data(self, **kwargs):
+        user = self.request.user
+        project = self.object
+
+        # 유저확인인 @decorate로 하지 않느 이유는 페이지 자체는 모두가 들어갈 수 있어야 하고, 구독정보만 구분해야 하므로 authenticated로 판별한다.
+        if user.is_authenticated:
+            subscription = Subscription.objects.filter(user=user,
+                                                       project=project)
+        else:
+            subscription = None
+
         article_list = Article.objects.filter(project=self.object)
-        return super().get_context_data(object_list=article_list, **kwargs)
+        return super().get_context_data(object_list=article_list,
+                                        subscription=subscription,
+                                        **kwargs)
+
+class SubscriptionListView(ListView):
+    model = Article
+    context_object_name = 'article_list'
+    template_name = 'subscribeapp/list.html'
+
+    paginate_by = 20
+
+    def get_queryset(self):
 
 
 class ProjectListView(ListView):
@@ -41,5 +63,3 @@ class ProjectListView(ListView):
     context_object_name = 'project_list'
     template_name = 'projectapp/list.html'
     paginate_by = 20
-
-

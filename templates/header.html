@@ -11,9 +11,16 @@
        </span>
         <span>
             <a href="{% url 'projectapp:list' %}">
-                Projexts
+                Projects
             </a>
         </span>
+        {% if user.is_authenticated %}
+        <span>
+            <a href="{% url 'subscribeapp:list' %}">
+                Subscription
+            </a>
+        </span>
+        {% endif %}
 
 {#          유저가 로그아웃된 상태일때      #}
         {% if not user.is_authenticated %}

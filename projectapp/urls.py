@@ -9,4 +9,5 @@ urlpatterns = [
     path('detail/<ink:pk>', ProjectDetailView.as_view(), name='detail'),
 
     path('list/', ProjectListView.as_view(), name='list'),
+    path('list/')
 ]

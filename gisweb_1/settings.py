@@ -70,7 +70,12 @@ INSTALLED_APPS = [
     'commentapp',
     'projectapp',
     'subscribeapp',
+
 ]
+
+
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

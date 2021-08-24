@@ -22,6 +22,9 @@ class Article(models.Model):
     content = models.TextField(null=True)
     # TextField() : 긴 내용을 넗을 때
 
+    #     작성한 시간이 자동으로 설정
     created_at = models.DateField(auto_now_add=True, null=True)
-#     작성한 시간이 자동으로 설정
+
+    like = models_
+
 
