@@ -25,6 +25,6 @@ class Article(models.Model):
     #     작성한 시간이 자동으로 설정
     created_at = models.DateField(auto_now_add=True, null=True)
 
-    like = models_
+    like = models.IntegerField(default=0)
 
 
