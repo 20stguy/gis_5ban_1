@@ -17,7 +17,7 @@
 
 .mw-500 {
     max-width: 500px;
-    padding: 1rem 1.5 rme =;
+    padding: 1rem 1.5 rem =;
 }
 .profile_image {
     height: 12rem;
@@ -67,7 +67,7 @@
     margin: 1rem;
 }
 
-@media screen and (max_width: 500px) {
+@media screen and (max-width: 500px) {
     html {
     /*  default font-size = 16px  */
         font-size:13px
