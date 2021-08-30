@@ -36,7 +36,7 @@ class ProjectDetailView(DetailView, MultipleObjectMixin):
         user = self.request.user
         project = self.object
 
-        # 유저확인인 @decorate로 하지 않느 이유는 페이지 자체는 모두가 들어갈 수 있어야 하고, 구독정보만 구분해야 하므로 authenticated로 판별한다.
+        # # 유저확인인 @decorate로 하지 않느 이유는 페이지 자체는 모두가 들어갈 수 있어야 하고, 구독정보만 구분해야 하므로 authenticated로 판별한다.
         if user.is_authenticated:
             subscription = Subscription.objects.filter(user=user,
                                                        project=project)
@@ -48,14 +48,6 @@ class ProjectDetailView(DetailView, MultipleObjectMixin):
                                         subscription=subscription,
                                         **kwargs)
 
-class SubscriptionListView(ListView):
-    model = Article
-    context_object_name = 'article_list'
-    template_name = 'subscribeapp/list.html'
-
-    paginate_by = 20
-
-    def get_queryset(self):
 
 
 class ProjectListView(ListView):
