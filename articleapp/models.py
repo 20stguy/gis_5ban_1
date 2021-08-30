@@ -14,7 +14,7 @@ class Article(models.Model):
     project = models.ForeignKey(Project,
                                 on_delete=models.SET_NULL,
                                 related_name='article',
-                                null=True)
+                                null=True, blank=True)
     # ForeignKey : 다른 데이터 베이스와 연결해주는 1:다로 연결해주는 필드
     title = models.CharField(max_length=200, null=True)
     # CharField() : 짧은 내용을 넣을때

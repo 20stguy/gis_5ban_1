@@ -1,21 +1,25 @@
 <div style="text-align: center">
     {# google font 'pacifico'뒤에 cursive는 만일 pacifico가 읽히지 않았을떄 사용될 폰트   #}
     <div class="pragmatic_header_logo">
-        <h1>Pragmatic</h1>
+        <h1>
+            <a href="{% url 'home' %}">
+            Pragmatic
+            </a>
+        </h1>
     </div>
     <div class="pragmatic_header_button">
-       <span>
+       <span class="mx-2">
            <a href="{% url 'articleapp:list' %}">
                Articles
            </a>
        </span>
-        <span>
+        <span class="mx-2">
             <a href="{% url 'projectapp:list' %}">
                 Projects
             </a>
         </span>
         {% if user.is_authenticated %}
-        <span>
+        <span class="mx-2">
             <a href="{% url 'subscribeapp:list' %}">
                 Subscription
             </a>
@@ -24,23 +28,23 @@
 
 {#          유저가 로그아웃된 상태일때      #}
         {% if not user.is_authenticated %}
-       <span>
+       <span class="mx-2">
            <a href="{% url 'accountapp:login' %}">
                Login
            </a>
        </span>
-       <span>
+       <span class="mx-2">
            <a href="{% url 'accountapp:create' %}">
                Signup
            </a>
        </span>
         {% else %}
-        <span>
+        <span class="mx-2">
             <a href="{% url 'accountapp:detail' pk=user.pk %}">
                MyPage
             </a>
         </span>
-        <span>
+        <span class="mx-2">
             <a href="{% url 'accountapp:logout' %}">
                Logout
             </a>

@@ -1,7 +1,7 @@
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path
 
-from accountapp.views import hello_world, AccountCreateView, AccountDetailView, AccountUpdateView, AccountDeleteView
+from accountapp.views import AccountCreateView, AccountDetailView, AccountUpdateView, AccountDeleteView
 
 # app 이름 accountapp -> name = router이름
 app_name = 'accountapp'
@@ -10,9 +10,9 @@ app_name = 'accountapp'
 urlpatterns = [
     # 주소창에 heello_world로 들가면, hello_worl의 충
     # name = router 이름
-    path('hello_world/', hello_world, name='hello_world'), #name == router이름
-
-    path('login/', LoginView.as_view(template_name='accountapp/login.html'),
+    # 삭제 path('hello_world/', hello_world, name='hello_world'), #name == router이름
+    #
+        path('login/', LoginView.as_view(template_name='accountapp/login.html'),
          name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
 

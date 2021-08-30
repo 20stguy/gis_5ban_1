@@ -20,7 +20,7 @@ class ArticleCreateView(CreateView):
     model = Article
     form_class = ArticleCreationForm
     success_url = reverse_lazy('articleapp:list')
-    template_name = 'rticleapp/create.html'
+    template_name = 'articleapp/create.html'
 
     # 로그인 된 유저에게 할당함
     def from_valid(self, form):
