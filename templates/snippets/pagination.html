@@ -7,7 +7,7 @@
     {% endif %}
         <a href="#"
            class="btn btn-dark rounded-pill NNS_B">
-            {% page_obj.number %}
+            {{ page_obj.number}}
         </a>
     {% if page_obj.has_next %}
         <a href="?page={{ page_obj.next_page_number }}"
