@@ -6,7 +6,7 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'gisweb_1.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'gisweb_1.settings.local') # 내부 파일을 찾아주는거라 settins 폴더가 추가되는 경로가 생겼어도 내부 파일을 찾아주는거라 경로 병경 안해도 된다.
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
