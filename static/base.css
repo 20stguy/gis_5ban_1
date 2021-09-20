@@ -14,3 +14,76 @@
     text-align: center;
     font-size: .8rem; margin: 1.5rem;
 }
+
+.mw-500 {
+    max-width: 500px;
+    padding: 1rem 1.5 rem =;
+}
+.profile_image {
+    height: 12rem;
+    width: 12rem;
+    border-radius: 20rem;
+    object-fit: cover;
+}
+
+
+.NNS_B {
+    font-family: "NanumSquareB", cursive;
+}
+
+.round_button{
+    color: black;
+    text-decoration: none;
+    box-shadow: 0 0 3px black;  /*box-shadow: x축 y축 크기 색깔*/
+    border-radius: 10rem;
+}
+/* 요소나 레이아웃은 rem을 써서 동적비율을 만들어주나, 요소나 레이아웃을 꾸미는건 px을 써도 무관하다.*/
+
+.round_button:hover{
+    color: dimgrey;
+}
+
+
+.article_image {
+    border_radius: 2rem;
+    width: 70%;
+    box-shadow: 0 0 .5rem grey;
+}
+
+
+.article_content{
+    font-size: 1.1rem;
+    text-aligh: left;
+    margin: 2rem;
+}
+
+
+.comment_box{
+    text_align: left;
+    border: solid;
+    border-coler: #bebebe;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+@media screen and (max-width: 500px) {
+    html {
+    /*  default font-size = 16px  */
+        font-size:13px
+    }
+}
+
+
+a {
+    /*꾸며주는 모든걸 없애주기*/
+    text-decoration: none;
+    /* 하트 색상을 검정으로 바꾸기 */
+    color: black;
+}
+
+/*마우스 커서 올리면 변경되는 anker태그 바꾸기*/
+a:hover {
+    /*  마우스에 커서 올리면 하트색깔 바뀌는거 없애기  */
+    color: black;
+}

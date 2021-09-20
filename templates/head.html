@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Title</title>
 
     {# Bootstrap link   #}
@@ -16,5 +17,34 @@
     {# STATIC FILES LINK #}
     {#    link누르고 tab 누르면 자동완성된다#}
     <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+
+    {# MATERIAL ICONS LINK #}
+    <link href="https://fonts.googleapis.com/css2?family-Material+Icons"
+          rel=""stylesheet">
+
+
+    {#  강사님이 주신 외부 코드 - 폰트바꾸기  #}
+    <style>
+        @font-face {
+            font-family: 'NanumSquareR';
+            src: local('NanumSquareR'),
+            url("{% static 'fonts/NanumSquareR.ttf' %}") format("opentype");
+        }
+        @font-face {
+            font-family: 'NanumSquareEB';
+            src: local('NanumSquareEB'),
+            url("{% static 'fonts/NanumSquareEB.otf' %}") format("opentype");
+        }
+        @font-face {
+            font-family: 'NanumSquareB';
+            src: local('NanumSquareB'),
+            url("{% static 'fonts/NanumSquareB.otf' %}") format("opentype");
+        }
+        @font-face {
+            font-family: 'NanumSquareR';
+            src: local('NanumSquareR'),
+            url("{% static 'fonts/NanumSquareR.otf' %}") format("opentype");
+        }
+    </style>
 
 </head>
