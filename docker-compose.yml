@@ -1,0 +1,12 @@
+# docker-compose.yml버전은 무엇으로 할것인가? portainer를 인식하는 최신버전이 3.7
+version: "3.7"
+
+# 단일컨테이너가 아니라 여러개의 컨테이너를 구동하고, 꺼졌을때 자동 재부팅 할 수있게 하기
+# portainer에서 container만드는것과 같은 과정이다.
+services:
+  django:
+    # run서버를 통해서 자신이 static을 구동만 하는것 gis_5ban_django:1
+    image: gis_5ban_django:1
+    # port설정
+    ports:
+      - 8080:8000
