@@ -3,10 +3,79 @@ version: "3.7"
 
 # 단일컨테이너가 아니라 여러개의 컨테이너를 구동하고, 꺼졌을때 자동 재부팅 할 수있게 하기
 # portainer에서 container만드는것과 같은 과정이다.
+# stack 만들기
 services:
+  # portainer에서 만드는것과 같은 방식이다.
+  nginx:
+    # nginx라고 써도 되지만 이렇게 되면 매번 최신 버전을 불러오고 호환성 문제가 발생 할 수 있따.
+    image: nginx:1.19.5
+    ports:
+      - 80:80
+    networks:
+      - gis_5ban_network
+    volumes:
+      # container: host
+      - /home/ubuntu/nginx.conf:/etc/nginx/nginx.conf
+      - gis_5ban_static:/data/static/
+      - gis_5ban_media:/data/media
+
   django:
     # run서버를 통해서 자신이 static을 구동만 하는것 gis_5ban_django:1
-    image: gis_5ban_django:1
-    # port설정
-    ports:
-      - 8080:8000
+    # 서비스를 업데이트 할때마다 portainer에서 stack을 지우고 stack에서 dicker-compose.yml을 업로드하기만 하면된다. image 버전만 바꿔주면 된다.
+    # 이전에는 끄면 계정 정보가 날아갔지만 gis_5ban_django:4부터는 mariadb가 있어서 서버를 껐다켜도 데이터가 남아있다.
+    image: gis_5ban_django:4
+    networks:
+      - gis_5ban_network
+    volumes:
+      - gis_5ban_static:/home/gis_5ban_1/staticfiles/
+      - gis_5ban_static:/home/gis_5ban_1/media/
+#    # port설정
+#    ports:
+#      - 8080:8000
+    # 민감정보 감추기 docker secret이용 경로는 /run/secrets/
+    secrets:
+      - DJANGO_SECRET_KEY
+      - MARIADB_USER
+      - MARIADB_PASSWORD
+
+  mariadb:
+    image: mariadb:10.5
+    networks:
+      - gis_5ban_network
+    volumes:
+      - gis_mariadb:/var/lib/mysql
+    secrets:
+      - MARIADB_ROOT_PASSWORD
+      - MARIADB_USER
+      - MARIADB_PASSWORD
+    environment:
+      MARIADB_ROOT_PASSWORD: password1234
+      # python -> gisweb_1 -> settigns -> deploy.py 에있는 DATABASE내용 정보 넣기
+      MARIADB_DATABASE: django
+      MARIADB_USER: django
+      MARIADB_PASSWORD: password1234
+
+
+# 선언해주기
+networks:
+  gis_5ban_network:
+
+# gis_5ban_static을 만든다고 해서 portainer에서 만든걸 쓰는게 아니라
+# 새로 gis_5ban_static, gis_5ban_media를 CMD로 만든거다.
+volumes:
+  gis_5ban_static:
+  gis_5ban_media:
+  gis_mariadb:
+
+# 선언하기.
+# secret은 volumes와 다르게 portainer에서 만들었다. 우리만 작성하게 하는것
+secrets:
+  DJANGO_SECRET_KEY:
+    # portainer에서 만든 것을 불러오겠다
+    external: true
+  MARIADB_ROOT_PASSWORD:
+    external: true
+  MARIADB_USER:
+    external: true
+  MARIADB_PASSWORD:
+    external: true
