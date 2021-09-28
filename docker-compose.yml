@@ -48,6 +48,7 @@ services:
       - MARIADB_ROOT_PASSWORD
       - MARIADB_USER
       - MARIADB_PASSWORD
+    # 환경설정 순서는 상관 없다
     environment:
       # python -> gisweb_1 -> settigns -> deploy.py 에있는 DATABASE내용 정보 넣기
       MARIADB_DATABASE: django
