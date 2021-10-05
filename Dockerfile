@@ -4,7 +4,7 @@ FROM python:3.9.0
 WORKDIR /home/
 
 # 다시 git에 push할때 필요한듯?
-RUN echo 'nothing_meaning5adsf'
+RUN echo 'nothing_meaning-4'
 
 # 정원님 여기 master 브랜치로 merge 하신 이후에
 # 계속 master 에다가 커밋하고 계신거죠?
