@@ -27,8 +27,10 @@ services:
     networks:
       - gis_5ban_network
     volumes:
+      - /home/ubuntu/nginx.conf:/etc/nginx/nginx.conf
       - gis_5ban_static:/home/gis_5ban_1/staticfiles/
       - gis_5ban_static:/home/gis_5ban_1/media/
+      - gis_log:/val/log/nginix/
 #    # port설정
 #    ports:
 #      - 8080:8000
@@ -67,6 +69,7 @@ volumes:
   gis_5ban_static:
   gis_5ban_media:
   gis_mariadb:
+  gis_log:
 
 # 선언하기.
 # secret은 volumes와 다르게 portainer에서 만들었다. 우리만 작성하게 하는것

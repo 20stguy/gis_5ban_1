@@ -31,7 +31,7 @@ WORKDIR /home/gis_5ban_1/
 # django에서 .env파일을 RUN echo로 불러왔으나 doker secret로 민감정보를 옮기면서 삭제해도 된다. 이건 deploy.py에서 read_secret함수로 대신 읽어온다.
 #RUN echo "SECRET_KEY=django-insecure-5e22sx2ua8fxf!7zv+86d7)=^6f_uhla1bw8l48y^*s%_o1w^o" > .env
 # 버전이 바뀜에 따라 RUN echo가 필요하므로 다시 아무거나 적어준다.
-RUN echo "no_meaning"
+RUN echo "no_meaning-1"
 
 # 깃허브에 올린 환경설정 라이브러리 담긴 requiremnets.txt 설치
 RUN pip install -r requirements.txt
@@ -39,8 +39,6 @@ RUN pip install -r requirements.txt
 RUN pip install gunicorn
 
 RUN pip install mysqlclient
-
-RUN python manage.py makemigrations
 
 # migrate뒤에 --settings=gisweb_1.settings.deploy가 없으면 로컬설정으로 돌아가게 된다. deploy설정으로 바꿔준다.
 # 개봘환경(pycharm)에 db.sqlite3파일이 있지만 가상 서버에는 없으므로 db생성 작업
