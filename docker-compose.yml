@@ -23,7 +23,7 @@ services:
     # run서버를 통해서 자신이 static을 구동만 하는것 gis_5ban_django:1
     # 서비스를 업데이트 할때마다 portainer에서 stack을 지우고 stack에서 dicker-compose.yml을 업로드하기만 하면된다. image 버전만 바꿔주면 된다.
     # 이전에는 끄면 계정 정보가 날아갔지만 gis_5ban_django:4부터는 mariadb가 있어서 서버를 껐다켜도 데이터가 남아있다.
-    image: gis_5ban_django:4
+    image: gis_5ban_django:5
     networks:
       - gis_5ban_network
     volumes:
