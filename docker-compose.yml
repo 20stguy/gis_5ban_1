@@ -18,6 +18,19 @@ services:
       - /home/ubuntu/nginx.conf:/etc/nginx/nginx.conf
       - gis_5ban_static:/data/static/
       - gis_5ban_media:/data/media
+      - gis_log:/var/log/nginx/
+
+  goaccess:
+    image: allinurl/goaccess:1.5.2
+    volumes:
+      - gis_log:/var/log/nginx/
+    ports:
+      - 7890:7890 # 외부포트 : 내부포트
+    command: /var/log/nginx/gis_access.log -o /var/log/nginx/report.html --log-format=COMBINED --real-time-html
+#    /var/log/nginx/gis_access.log 인풋
+#    -o /var/log/nginx/report.html 아웃풋
+#    --log 로그파일
+#    --real 리얼타임 로그
 
   django:
     # run서버를 통해서 자신이 static을 구동만 하는것 gis_5ban_django:1
