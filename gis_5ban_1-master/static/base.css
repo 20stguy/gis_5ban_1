@@ -1,0 +1,32 @@
+.pragmatic_header_logo {
+    margin: 2rem 0;
+    font-family: 'Pacifico', cursive;
+}
+
+.pragmatic_header_button {
+    margin-bottom: 2rem;
+}
+
+.pragmatic_footer_button {
+    font-size: 0.8rem;
+    margin: 1.5rem
+}
+
+.mw-500 {
+    max-width: 500px;
+    padding: 1rem 1.5rem;
+}
+
+.profile_image {
+    height: 12rem;
+    width: 12rem;
+    border-radius: 20rem;
+    object-fit: cover;
+}
+
+.NNS_B {
+    font-family: "NanumSquareB", cursive;
+}
+
+
+
